@@ -141,10 +141,18 @@
 
 
 03月報告
-	TYM-DMP
+	TYM-DMP(ApacheIgnite深堀調査)
 		・ApacheIgnite環境構築
 		・機能検証
 			・AffinityKey、Collocation
-			・セカンダリインデックス
-		・データ階層構造について検討・検証
-		・ダイナミック区切りの変換について検討・検証
+			・GeoSpatial
+			・自動リバランス
+		・Key、データ構造について検討
+			・GeoHash
+		・サンプルユースケースアプリ
+			・Key,Valueの検索性能
+			・Indexの検索性能
+			・GeoSpatialマッチング性能
+04月報告
+	TYM-DMP
+		・
