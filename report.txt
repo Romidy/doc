@@ -303,6 +303,10 @@ TYM-GPU有効利用
 		#9614: GPUの利用率について、１秒以下の間隔で取得が可能か調査/確認
 		#9540: Tensorflow呼び出しだけでCPUが100%に張り付く
 		#9608: Spark Structured Streamingがdeploy-mode clusterで実行時エラー
+	#9529: [マスタ]案4
+		#9530: 案4 調査-yarn 3.1.0のGPUリソーススケジュールについて
+		#9537: 案4 ansibleのhadoopを3.1.1にUpgrade
+		#9607: 案４のhadoopバージョンアップに関するansbile整理
 	#9375: [課題]
 		#9311: [課題] ansibleからGPUインスタンスの作成ができない
 		#9518: [課題] 案０GPU1台構成のときnum-executor=3でspark-submtできない
