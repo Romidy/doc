@@ -318,6 +318,35 @@ TYM-GPU有効利用
 		#9618: 複数画像のtensolflow処理を一括で行うバージョン作成
 	#9529: [マスタ]案4
 		#9617: 案４のアプリケーション動作確認
+		#9803: 案4 GPUリソース状況を確認するためにUI2を調査
+		#9810: 案4 GPUリソースの分離(CGropu)による動作を確認
+		#9921: 案4 gpuリソース設定をansibleに取り込み
 	#9616: [マスタ]案０＆案１本格測定＆チューニング
+		#9675: ケースパターン表の仮作成
+		#9694: 試験実施の手順化
+		#9660: 案０-4 Canの間隔を20sに変更する
+		#9677: エグゼキュータ数をオーバコミットした時の動作確認
+		#9678: 案１：　API化 ＋ continuous-processing
+		#9679: 物理量変換ラベル数の変更パターンの測定
+		#9695: 案０案１ ケース0101：kafkaパーティション数
+		#9680: GPU & CPU 負荷変更パターンの測定
+			#9820: GPUCPU負荷の変更について、GPUが溢れてきたため、GPU３台構成の確認を行う
+		#9801: 案0 ContinuousProcessingの案１との比較
+		#9804: 案１ continuousProcessingによるlatency低下の数値化
 	#9375: [課題]
-		#9499: [課題] ansibleで追加ディスクがマウントされない
+		#9540: Tensorflow呼び出しだけでCPUが100%に張り付く
+		#9608: Spark Structured Streamingがdeploy-mode clusterで実行時エラー
+		#9687: Continuous Processingでorg.apache.spark.SparkException: data read failed
+		#9696: 案1　APIへのリクエストまでに待ちの時間が発生する
+	#9922: 案0-1 試験実施手順の更新
+	#9927: DetectStreaming、SSD-APIServerのドキュメント整理
+
+11月報告
+TYM-全体最適タギング
+	#9945: [マスタ]事前調査＆準備
+		#9964: 曇りガラス識別アルゴリズムの確認
+		#9965: TensorFlowServingの調査
+		#9966: APIサーバロードバ
+
+	
+
