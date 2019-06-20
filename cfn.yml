@@ -1,0 +1,147 @@
+AWSTemplateFormatVersion: '2010-09-09'
+Parameters:
+  VPC:
+    Type: String
+    Default: [Vpc-ID]
+  VpcCidrBlock:
+    Type: String
+    Default: 10.0.0.0/16
+  SSHLocation:
+    Type: String
+    Default: 10.0.0.0/16
+
+Resources:
+  SubnetPublic1a:
+    Type: AWS::EC2::Subnet
+    Properties:
+      VpcId:
+        Ref: VPC
+      CidrBlock: 10.23.100.0/24
+      AvailabilityZone: "ap-northeast-1a"
+      MapPublicIpOnLaunch: true
+      Tags:
+      - Key: Name
+        Value: SubnetPublic1a
+  SubnetPublic1c:
+    Type: AWS::EC2::Subnet
+    Properties:
+      VpcId:
+        Ref: VPC
+      CidrBlock: 10.23.110.0/24
+      AvailabilityZone: "ap-northeast-1c"
+      MapPublicIpOnLaunch: true
+      Tags:
+      - Key: Name
+        Value: SubnetPublic1c
+  SubnetPrivate1a:
+    Type: AWS::EC2::Subnet
+    Properties:
+      VpcId:
+        Ref: VPC
+      CidrBlock: 10.23.100.0/24
+      AvailabilityZone: "ap-northeast-1a"
+      MapPublicIpOnLaunch: false
+      Tags:
+      - Key: Name
+        Value: SubnetPrivate1a
+  SubnetPrivate1c:
+    Type: AWS::EC2::Subnet
+    Properties:
+      VpcId:
+        Ref: VPC
+      CidrBlock: 10.23.100.0/24
+      AvailabilityZone: "ap-northeast-1c"
+      MapPublicIpOnLaunch: false
+      Tags:
+      - Key: Name
+        Value: SubnetPrivate1c
+  InternetGateway:
+    Type: AWS::EC2::InternetGateway
+    Properties:
+      Tags:
+      - Key: Name
+        Value: InternetGateway
+  GatewayToInternet:
+    Type: AWS::EC2::VPCGatewayAttachment
+    Properties:
+      VpcId:
+        Ref: VPC
+      InternetGatewayId:
+        Ref: InternetGateway
+  PublicRouteTable:
+    Type: AWS::EC2::RouteTable
+    Properties:
+      VpcId:
+        Ref: VPC
+    Properties:
+      Tags:
+      - Key: Application
+        Value:
+          Ref: AWS::StackId
+      - Key: Network
+        Value: Public
+  PublicRoute:
+    Type: AWS::EC2::Route
+    DependsOn: GatewayToInternet
+    Properties:
+      RouteTableId:
+      Ref: PublicRouteTable
+      DestinationCidrBlock: 0.0.0.0/0
+      GatewayId:
+        Ref: InternetGateway
+  PublicSubnetRouteTableAssociatio1a:
+    Type: AWS::EC2::SubnetRouteTableAssociation
+    Properties:
+      SubnetId:
+        Ref: SubnetPublic1a
+      RouteTableId:
+        Ref: PublicRouteTable
+  PublicSubnetRouteTableAssociation1c:
+    Type: AWS::EC2::SubnetRouteTableAssociation
+    Properties:
+      SubnetId:
+        Ref: SubnetPublic1c
+      RouteTableId:
+        Ref: PublicRouteTable
+  PublicNetworkAcl:
+    Type: AWS::EC2::NetworkAcl
+    Properties:
+      VpcId:
+        Ref: VPC
+  PublicNetworkAclEntry:
+    Type: AWS::EC2::NetworkAclEntry
+    Properties:
+      CidrBlock:
+        Ref: VpcCidrBlock
+        Egress: true
+        NetworkAclId:
+          Ref: PublicNetworkAcl
+        Protocol: -1
+        RuleAction: allow
+        RuleNumber: 100
+  PublicSubnetNetworkAclAssociatio1a:
+    Type: AWS::EC2::SubnetNetworkAclAssociation
+    Properties:
+      SubnetId:
+        Ref: SubnetPublic1a
+      NetworkAclId:
+        Ref: PublicNetworkAcl
+  PublicSubnetNetworkAclAssociatio1c
+    Type: AWS::EC2::SubnetNetworkAclAssociation
+    Properties:
+      SubnetId:
+        Ref: SubnetPublic1c
+      NetworkAclId:
+        Ref: PublicNetworkAcl
+  InstanceSecurityGroup
+    Type: AWS::EC2::SecurityGroup
+    Properties:
+      VpcId:
+        Ref: VPC
+      SecurityGroupIngress:
+        - IpProtocol: tcp
+          FromPort: 22
+          ToPort: 22
+          CidrIp:
+            Ref: SSHLocation
+
