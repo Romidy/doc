@@ -1,3 +1,10 @@
+https://qiita.com/na0AaooQ/items/251790a7ef311804b77e
+https://dev.classmethod.jp/cloud/aws/awscli-cloudformation/
+https://docs.aws.amazon.com/ja_jp/AWSCloudFormation/latest/UserGuide/aws-resource-ec2-subnet.html
+https://qiita.com/mshinoda88/items/65e7e145c7ec943af403
+https://blog.hatappi.me/entry/2019/02/17/123111
+
+
 AWSTemplateFormatVersion: '2010-09-09'
 Parameters:
   VPC:
